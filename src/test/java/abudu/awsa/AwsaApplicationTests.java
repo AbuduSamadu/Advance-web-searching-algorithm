@@ -9,5 +9,4 @@ class AwsaApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

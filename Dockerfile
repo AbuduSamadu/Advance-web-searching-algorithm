@@ -1,5 +1,5 @@
 # Use a custom Tomcat runtime with JDK 23 as a parent image
-FROM custom-tomcat-jdk23:latest
+FROM custom-tomcat-jdk21:latest
 
 # Remove the default ROOT webapp
 RUN rm -rf /usr/local/tomcat/webapps/ROOT
