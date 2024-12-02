@@ -1,7 +1,7 @@
 package abudu.awsa.controllers;
 
 
-import abudu.awsa.models.dto.DatasetDTO;
+import abudu.awsa.dto.DatasetDTO;
 import abudu.awsa.services.DatasetService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

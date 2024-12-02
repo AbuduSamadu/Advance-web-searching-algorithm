@@ -2,7 +2,7 @@ package abudu.awsa.services;
 
 
 import abudu.awsa.models.Dataset;
-import abudu.awsa.models.dto.DatasetDTO;
+import abudu.awsa.dto.DatasetDTO;
 import abudu.awsa.repositories.DatasetRepository;
 import abudu.awsa.utils.DatasetMapper;
 import org.springframework.beans.factory.annotation.Autowired;

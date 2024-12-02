@@ -1,7 +1,7 @@
 package abudu.awsa.utils;
 
 import abudu.awsa.models.Dataset;
-import abudu.awsa.models.dto.DatasetDTO;
+import abudu.awsa.dto.DatasetDTO;
 
 public class DatasetMapper {
     public static DatasetDTO toDTO(Dataset dataset){

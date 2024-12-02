@@ -1,4 +1,4 @@
-package abudu.awsa.models.dto;
+package abudu.awsa.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
