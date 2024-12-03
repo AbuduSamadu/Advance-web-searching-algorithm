@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
-public interface TaskRepository extends JpaRepository<Task, Long> {
+public interface TaskRepository extends JpaRepository<Task ,Long> {
     List<Task> findByStatus(Task status);
     List<Task> findByPriority(Priority priority);
     List<Task> findByDeadlineBefore(LocalDateTime deadline);
