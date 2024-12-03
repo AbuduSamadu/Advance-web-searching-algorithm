@@ -27,13 +27,12 @@ public class TaskMapper {
         if (taskDTO == null) {
             return null;
         }
-        Task task = new Task();
-        task.setId(taskDTO.getId());
-        task.setTitle(taskDTO.getTitle());
-        task.setDescription(taskDTO.getDescription());
-        task.setPriority(Priority.valueOf(taskDTO.getPriority().toUpperCase()));
-        task.setDeadline(taskDTO.getDeadline());
-        task.setStatus(Status.valueOf(taskDTO.getStatus().toUpperCase()));
-        return task;
+       return new Task(
+               taskDTO.getTitle(),
+               taskDTO.getDescription(),
+               Priority.valueOf(taskDTO.getPriority()),
+               taskDTO.getDeadline(),
+               Status.valueOf(taskDTO.getStatus())
+       );
     }
 }
