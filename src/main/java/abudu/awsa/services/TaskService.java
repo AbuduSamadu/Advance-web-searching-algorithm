@@ -1,28 +1,31 @@
 package abudu.awsa.services;
 
 import abudu.awsa.dto.TaskDTO;
+import abudu.awsa.models.Priority;
 import abudu.awsa.models.Task;
 import abudu.awsa.repositories.TaskRepository;
 import abudu.awsa.utils.TaskMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class TaskService {
 
+
     private final TaskRepository taskRepository;
     private final TaskMapper taskMapper ;
 
+    @Autowired
     public TaskService(TaskRepository taskRepository, TaskMapper taskMapper) {
         this.taskRepository = taskRepository;
         this.taskMapper = taskMapper;
     }
 
-    public List<Task> getTasksByPriority(Task priority) {
+    public List<Task> getTasksByPriority(Priority priority) {
         return taskRepository.findByPriority(priority);
     }
 
@@ -55,7 +58,6 @@ public class TaskService {
                 .map(taskMapper::toTaskDTO)
                 .collect(Collectors.toList());
     }
-
     public TaskDTO updateTask(Long id, TaskDTO taskDTO) {
         Task task = TaskMapper.toTask(taskDTO);
         task.setId(id);

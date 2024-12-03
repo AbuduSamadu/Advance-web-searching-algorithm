@@ -1,11 +1,13 @@
 package abudu.awsa.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.time.LocalDateTime;
 
-public class TaskDTO {
+public class TaskDTO extends RepresentationModel<TaskDTO> {
     private Long id;
 
     @NotNull(message = "Title cannot be null")
@@ -17,7 +19,10 @@ public class TaskDTO {
     private String description;
 
     private String priority;
-    private LocalDateTime deadline;
+
+     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+     private LocalDateTime deadline;
+
     private String status;
 
     public TaskDTO() {}

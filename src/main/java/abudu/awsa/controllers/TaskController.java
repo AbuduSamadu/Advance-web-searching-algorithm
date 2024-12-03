@@ -1,13 +1,17 @@
 package abudu.awsa.controllers;
 
 import abudu.awsa.dto.TaskDTO;
+import abudu.awsa.models.Priority;
 import abudu.awsa.models.Task;
 import abudu.awsa.services.TaskService;
+import abudu.awsa.utils.HateoasUtil;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/tasks")
@@ -22,25 +26,29 @@ public class TaskController {
     @PostMapping
     public ResponseEntity<TaskDTO> createTask(@RequestBody TaskDTO taskDTO) {
         TaskDTO createdTask = taskService.createTask(taskDTO);
-        return ResponseEntity.ok(createdTask);
+        EntityModel<TaskDTO> resource = HateoasUtil.addLinksToTask(createdTask);
+       return ResponseEntity.created(resource.getRequiredLink("self").toUri()).body(resource.getContent());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TaskDTO> getTaskById(@PathVariable Long id) {
+    public EntityModel<TaskDTO> getTaskById(@PathVariable Long id) {
         TaskDTO task = taskService.getTaskById(id);
-        return ResponseEntity.ok(task);
+        return HateoasUtil.addLinksToTask(task);
     }
 
     @GetMapping
-    public ResponseEntity<List<TaskDTO>> getAllTasks() {
+    public List<EntityModel<TaskDTO>> getAllTasks() {
         List<TaskDTO> tasks = taskService.getAllTasks();
-        return ResponseEntity.ok(tasks);
+        return tasks.stream()
+                .map(HateoasUtil::addLinksToTask)
+                .collect(Collectors.toList());
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<TaskDTO> updateTask(@PathVariable Long id, @RequestBody TaskDTO taskDTO) {
         TaskDTO updatedTask = taskService.updateTask(id, taskDTO);
-        return ResponseEntity.ok(updatedTask);
+        EntityModel<TaskDTO> resource = HateoasUtil.addLinksToTask(updatedTask);
+        return ResponseEntity.ok(resource.getContent());
     }
 
 
@@ -50,7 +58,7 @@ public class TaskController {
         return ResponseEntity.noContent().build();
     }
     @GetMapping("/filter/priority/{priority}")
-    public ResponseEntity<List<Task>> getTasksByPriority(@PathVariable Task priority) {
+    public ResponseEntity<List<Task>> getTasksByPriority(@PathVariable Priority priority) {
         List<Task> tasks = taskService.getTasksByPriority(priority);
         return ResponseEntity.ok(tasks);
     }

@@ -1,6 +1,8 @@
 package abudu.awsa.utils;
 
 
+import abudu.awsa.models.Task;
+
 public class SortUtil {
     public static void applySort(String algorithm, int[] array) {
         switch (algorithm.toLowerCase()) {
@@ -28,4 +30,5 @@ public class SortUtil {
             throw new IllegalArgumentException("Invalid sorting algorithm for float: " + algorithm);
         }
     }
+
 }
