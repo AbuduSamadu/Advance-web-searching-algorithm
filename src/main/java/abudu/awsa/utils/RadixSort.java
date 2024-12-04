@@ -11,6 +11,9 @@ public class RadixSort {
     }
 
     private static void countSort(int[] array, int exp) {
+        if(ArrayIsSorted.isSorted(array)){
+            return;
+        }
         int n = array.length;
         int[] output = new int[n];
         int[] count = new int[10];

@@ -2,6 +2,10 @@ package abudu.awsa.utils;
 
 public class QuickSort {
     public static void sort(int[] array, int low, int high) {
+
+        if(ArrayIsSorted.isSorted(array)){
+            return;
+        }
         if (low < high) {
             int partitionIndex = partition(array, low, high);
 

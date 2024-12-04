@@ -5,7 +5,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class BucketSort {
-    public static void sort(float[] array) {
+    public static void sort(int[] array) {
+
+        if(ArrayIsSorted.isSorted(array)){
+            return;
+        }
+
+
         int n = array.length;
 
         if (n <= 0) return;
@@ -28,7 +34,7 @@ public class BucketSort {
         int index = 0;
         for (List<Float> bucket : buckets) {
             for (float value : bucket) {
-                array[index++] = value;
+                array[index++] = (int) value;
             }
         }
     }

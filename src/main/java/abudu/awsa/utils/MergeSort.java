@@ -4,6 +4,10 @@ package abudu.awsa.utils;
 
 public class MergeSort {
     public static void sort(int[] array, int left, int right) {
+        if(ArrayIsSorted.isSorted(array)){
+            return;
+        }
+
         if (left < right) {
             int mid = left + (right - left) / 2;
 

@@ -1,10 +1,14 @@
 package abudu.awsa.utils;
 
-
-import abudu.awsa.models.Task;
+import java.util.Arrays;
 
 public class SortUtil {
+
     public static void applySort(String algorithm, int[] array) {
+        if (array == null || array.length == 0) {
+            throw new IllegalArgumentException("Array cannot be null or empty");
+        }
+
         switch (algorithm.toLowerCase()) {
             case "heap":
                 HeapSort.sort(array);
@@ -15,20 +19,20 @@ public class SortUtil {
             case "merge":
                 MergeSort.sort(array, 0, array.length - 1);
                 break;
-            case "radix":
-                RadixSort.sort(array);
+            case "bucket":
+                BucketSort.sort(array);
+                break;
+            case "default":
+                Arrays.sort(array);
+                break;
+            case "parallel":
+                Arrays.parallelSort(array);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid sorting algorithm: " + algorithm);
         }
     }
 
-    public static void applySort(String algorithm, float[] array) {
-        if ("bucket".equalsIgnoreCase(algorithm)) {
-            BucketSort.sort(array);
-        } else {
-            throw new IllegalArgumentException("Invalid sorting algorithm for float: " + algorithm);
-        }
-    }
+
 
 }

@@ -2,6 +2,10 @@ package abudu.awsa.utils;
 
 public class HeapSort {
     public static void sort(int[] array) {
+
+        if(ArrayIsSorted.isSorted(array)){
+            return;
+        }
         int n = array.length;
 
         // Build max heap
@@ -17,6 +21,8 @@ public class HeapSort {
             heapify(array, i, 0);
         }
     }
+    
+  
 
     private static void heapify(int[] array, int n, int i) {
         int largest = i;
