@@ -24,13 +24,6 @@ public class SortController {
                 int[] array = arrayList.stream().mapToInt(i -> (Integer) i).toArray();
                 SortUtil.applySort(algorithm, array);
                 response.put("sortedArray", array);
-            } else if (!arrayList.isEmpty() && arrayList.getFirst() instanceof Float) {
-                float[] array = new float[arrayList.size()];
-                for (int i = 0; i < arrayList.size(); i++) {
-                    array[i] = (Float) arrayList.get(i);
-                }
-                SortUtil.applySort(algorithm, array);
-                response.put("sortedArray", array);
             } else {
                 throw new IllegalArgumentException("Array type not supported");
             }

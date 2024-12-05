@@ -15,16 +15,16 @@ public class SortUtil {
             case "radix":
                 RadixSort.sort(array);
                 break;
+            case "bucket":
+                BucketSort.sort(array);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid sorting algorithm: " + algorithm);
         }
+        if (!ArrayIsSorted.isSorted(array)) {
+            throw new RuntimeException("Sorting failed");
+        }
+
     }
 
-    public static void applySort(String algorithm, float[] array) {
-        if ("bucket".equalsIgnoreCase(algorithm)) {
-            BucketSort.sort(array);
-        } else {
-            throw new IllegalArgumentException("Invalid sorting algorithm for float: " + algorithm);
-        }
-    }
 }
