@@ -6,10 +6,18 @@ import java.util.List;
 
 public class BucketSort {
     public static void sort(int[] array) {
-        if(ArrayIsSorted.isSorted(array)) return;
+        if (ArrayIsSorted.isSorted(array)) return;
         int n = array.length;
 
-        if (n <= 0) return;
+        if (n == 0) return;
+
+        // Find the maximum value in the array to determine the range
+        int maxValue = array[0];
+        for (int value : array) {
+            if (value > maxValue) {
+                maxValue = value;
+            }
+        }
 
         List<Integer>[] buckets = new List[n];
 
@@ -18,7 +26,8 @@ public class BucketSort {
         }
 
         for (int value : array) {
-            int bucketIndex = (int) (n * value);
+            // Calculate the bucket index based on the value and the maximum value
+            int bucketIndex = (value * n) / (maxValue + 1);
             buckets[bucketIndex].add(value);
         }
 
